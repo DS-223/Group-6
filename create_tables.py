@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 )
 """)
 
-print("✅ Database and tables created.")
+print(" Database and tables created.")
 
 cursor.close()
 conn.close()
