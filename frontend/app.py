@@ -72,7 +72,7 @@ products = [
         "name": "Strawberries",
         "price": "$6.99 / box",
         "origin": "Grown in Watsonville, CA",
-        "image": "images/strawberries.png"
+        "image": "images/strawberry.png"
     }
 ]
 
