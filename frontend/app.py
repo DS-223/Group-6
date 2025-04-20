@@ -43,19 +43,19 @@ products = [
         "name": "Heirloom tomato",
         "price": "$5.99 / lb",
         "origin": "Grown in San Juan Capistrano, CA",
-        "image": "images/tomato.jpg"
+        "image": "images/tomato.png"
     },
     {
         "name": "Organic ginger",
         "price": "$12.99 / lb",
         "origin": "Grown in Huntington Beach, CA",
-        "image": "images/ginger.jpg"
+        "image": "images/ginger.png"
     },
     {
         "name": "Organic cucumber",
         "price": "$7.99 / lb",
         "origin": "Grown in Huntington Beach, CA",
-        "image": "images/cucumber.jpg"
+        "image": "images/cucumber.png"
     },
 ]
 
