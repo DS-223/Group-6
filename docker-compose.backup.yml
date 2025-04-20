@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 version: '3.8'
 
->>>>>>> 4108254b50a1ef2648d123ea74faad9c4bc4fb88
 services:
   db:
     image: mysql:8.0
@@ -18,18 +15,9 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
-  backend: 
-    build: ./backend
-    container_name: backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-    depends_on:
-      - db
+volumes:
+  db_data:
 
-<<<<<<< HEAD
   ds:
     build: ./ds
     container_name: ds
@@ -39,11 +27,3 @@ services:
     depends_on:
       - db
 
-volumes:
-  db_data:
-=======
-volumes:
-  db_data:
-
-
->>>>>>> 4108254b50a1ef2648d123ea74faad9c4bc4fb88
