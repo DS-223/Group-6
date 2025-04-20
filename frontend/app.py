@@ -34,45 +34,39 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+# --- Page Header ---
 st.markdown("## Hot Sales")
 st.caption("April 10, 2025")
-
-col1, col2, col3 = st.columns([1, 1, 2])
-with col1:
-    st.button("Default")
-with col2:
-    st.button("A-Z")
-with col3:
-    st.button("List view")
-
-st.markdown("---")
 
 products = [
     {
         "name": "Heirloom tomato",
         "price": "$5.99 / lb",
         "origin": "Grown in San Juan Capistrano, CA",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg"
+        "image": "images/tomato.jpg"
     },
     {
         "name": "Organic ginger",
         "price": "$12.99 / lb",
         "origin": "Grown in Huntington Beach, CA",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Zingiber_officinale_Roscoe.JPG"
+        "image": "images/ginger.jpg"
     },
     {
         "name": "Organic cucumber",
         "price": "$7.99 / lb",
         "origin": "Grown in Huntington Beach, CA",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Cucumber_BDL.jpg"
+        "image": "images/cucumber.jpg"
     },
 ]
 
 cols = st.columns(3)
-
 for col, product in zip(cols, products):
     with col:
-        st.image(product["image"], use_column_width=True)
-        st.markdown(f"**{product['name']}**")
-        st.markdown(f"<span style='color:green; font-weight:bold'>{product['price']}</span>", unsafe_allow_html=True)
-        st.caption(product["origin"])
+        st.image(product["image"], use_container_width=True)
+        st.markdown(f"""
+            <div style="text-align:center;">
+                <h4 style="margin:0;">{product['name']}</h4>
+                <p style="color:green; font-weight:bold; margin:5px 0;">{product['price']}</p>
+                <p style="font-size:13px; color:#666;">{product['origin']}</p>
+            </div>
+        """, unsafe_allow_html=True)
