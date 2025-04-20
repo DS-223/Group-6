@@ -24,6 +24,17 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./frontend:/app
+    command: streamlit run app.py --server.address=0.0.0.0
+    depends_on:
+      - backend
+
   ds:
     build: ./ds
     container_name: ds
