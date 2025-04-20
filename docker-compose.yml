@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: mysql:8.0
@@ -26,7 +24,14 @@ services:
     depends_on:
       - db
 
+  ds:
+    build: ./ds
+    container_name: ds
+    command: python app.py
+    volumes:
+      - ./ds:/app
+    depends_on:
+      - db
+
 volumes:
   db_data:
-
-
