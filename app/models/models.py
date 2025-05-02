@@ -113,3 +113,36 @@ class Transaction(Base):
     customer = relationship("User", back_populates="transactions")
     project = relationship("Project", back_populates="transactions")
     bandit = relationship("Bandit", back_populates="transactions")
+
+
+class Prediction(Base):
+    """
+    Stores the output of predictive models for customer interactions.
+
+    Attributes:
+        prediction_id (int): Primary key.
+        customer_id (int): Foreign key referencing the customer.
+        project_id (int): Foreign key referencing the promotion/project.
+        bandit_id (int): Optional foreign key referencing the shown variant.
+        timestamp (datetime): When the prediction was generated.
+        predicted_score (float): Model output, such as click probability.
+        model_version (str): Version tag or identifier of the predictive model.
+    Relationships:
+        customer (User): The user for whom prediction is made.
+        project (Project): The campaign associated with prediction.
+        bandit (Bandit): Optional variant associated.
+    """
+    __tablename__ = "predictions"
+
+    prediction_id = Column(Integer, primary_key=True, index=True)
+    customer_id = Column(Integer, ForeignKey("users.customer_id"), nullable=False)
+    project_id = Column(Integer, ForeignKey("projects.project_id"), nullable=False)
+    bandit_id = Column(Integer, ForeignKey("bandits.bandit_id"), nullable=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    predicted_score = Column(Float, nullable=False)
+    model_version = Column(String, nullable=False)
+
+    customer = relationship("User")
+    project = relationship("Project")
+    bandit = relationship("Bandit")
+
