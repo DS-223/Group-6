@@ -52,7 +52,6 @@ class Project(Base):
     bandits = relationship("Bandit", back_populates="project")
     transactions = relationship("Transaction", back_populates="project")
 
-
 class Bandit(Base):
     """
     Represents a promotional option or variant within a campaign.
@@ -61,11 +60,11 @@ class Bandit(Base):
         bandit_id (int): Primary key.
         project_id (int): Foreign key linking to a campaign.
         bandit_name (str): Name or label for this variant.
-        alpha (float): Success prior (Bayesian A/B testing).
-        beta (float): Failure prior (Bayesian A/B testing).
+        alpha (float): Success prior (Bayesian A/B testing), default = 1.
+        beta (float): Failure prior (Bayesian A/B testing), default = 1.
         n (int): Total trials.
-        number_of_success (int): Number of successful clicks or purchases.
-        number_of_failures (int): Number of unsuccessful trials.
+        number_of_success (int): Number of successful clicks or purchases, default = 0.
+        number_of_failures (int): Number of unsuccessful trials, default = 0.
     Relationships:
         project (Project): The project this bandit belongs to.
         transactions (List[Transaction]): All transactions that used this bandit.
@@ -75,11 +74,11 @@ class Bandit(Base):
     bandit_id = Column(Integer, primary_key=True, index=True)
     project_id = Column(Integer, ForeignKey("projects.project_id"), nullable=False)
     bandit_name = Column(String, nullable=False)
-    alpha = Column(Float)
-    beta = Column(Float)
+    alpha = Column(Float, default=1)
+    beta = Column(Float, default=1)
     n = Column(Integer)
-    number_of_success = Column(Integer)
-    number_of_failures = Column(Integer)
+    number_of_success = Column(Integer, default=0)
+    number_of_failures = Column(Integer, default=0)
 
     project = relationship("Project", back_populates="bandits")
     transactions = relationship("Transaction", back_populates="bandit")
