@@ -1,7 +1,11 @@
 from sqlalchemy import create_engine
 from app.models.models import Base
 
-DATABASE_URL = "sqlite:///./test.db"
+from sqlalchemy import create_engine
+
+DATABASE_URL = "postgresql://postgres:admin1234@localhost:5432/supermarket_hot_deals_db"
+
+engine = create_engine(DATABASE_URL)
 
 engine = create_engine(DATABASE_URL)
 
