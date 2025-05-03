@@ -57,21 +57,6 @@ CREATE TABLE IF NOT EXISTS transactions (
 )
 """)
 
-
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS sessions (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id VARCHAR(50),
-    session_id VARCHAR(50),
-    layout_version VARCHAR(10),
-    product_id VARCHAR(50),
-    clicked BOOLEAN,
-    purchased BOOLEAN,
-    amount_spent FLOAT,
-    timestamp DATETIME
-)
-""")
-
 print(" Database and tables created.")
 
 cursor.close()
