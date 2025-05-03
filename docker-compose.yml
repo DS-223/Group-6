@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   db:
     image: mysql:8.0
@@ -14,7 +16,7 @@ services:
       - db_data:/var/lib/mysql
 
   backend: 
-    build: ./backend
+    build: ./Supermarket_Hot_Deals/backend
     container_name: backend
     ports:
       - "8000:8000"
@@ -25,7 +27,7 @@ services:
       - db
 
   frontend:
-    build: ./frontend
+    build: ./Supermarket_Hot_Deals/frontend
     container_name: frontend
     ports:
       - "8501:8501"
@@ -36,9 +38,11 @@ services:
       - backend
 
   ds:
-    build: ./ds
+    build: ./Supermarket_Hot_Deals/ds
     container_name: ds
-    command: python app.py
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+    ports:
+      - "8888:8888"
     volumes:
       - ./ds:/app
     depends_on:
