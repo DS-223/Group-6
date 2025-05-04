@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy project files into container
 COPY . .
 
-# Install common data science packages
-RUN pip install pandas numpy matplotlib seaborn
+# Install required packages
+RUN pip install --no-cache-dir pandas numpy matplotlib seaborn notebook
 
-# Run your script
-CMD ["python", "app.py"]
+# Start Jupyter Notebook when container runs
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
