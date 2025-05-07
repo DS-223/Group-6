@@ -4,7 +4,9 @@ import sqlalchemy.orm as orm
 from dotenv import load_dotenv
 import os
 
-load_dotenv(".env")
+from dotenv import load_dotenv
+from pathlib import Path
+load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env")
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
