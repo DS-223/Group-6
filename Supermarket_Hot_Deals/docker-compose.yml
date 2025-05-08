@@ -15,35 +15,36 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   backend: 
-    build: ../backend
+    build: ./backend
     container_name: backend
     ports:
       - "8000:8000"
     volumes:
-      - ../backend:/app
+      - ./backend:/app
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     depends_on:
       - db
 
   frontend:
-    build: ../frontend
+    build: ./frontend
     container_name: frontend
     ports:
       - "8501:8501"
     volumes:
-      - ../frontend:/app
+      - ./frontend:/app
     command: streamlit run app.py --server.address=0.0.0.0
     depends_on:
       - backend
 
   ds:
-    build: .
+    build:
+      context: ./ds
     container_name: ds
     command: jupyter notebook --notebook-dir=/app --ip=0.0.0.0 --port=8888 --no-browser --allow-root
     ports:
       - "8888:8888"
     volumes:
-      - .:/app
+      - ./ds:/app
     depends_on:
       - db
 
