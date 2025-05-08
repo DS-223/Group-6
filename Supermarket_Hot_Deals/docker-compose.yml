@@ -3,14 +3,14 @@ version: "3.8"
 services:
   db:
     image: postgres:15
-    container_name: postgres_db
+    container_name: supermarket_db
     restart: always
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: ab_test
-      POSTGRES_USER: testuser
-      POSTGRES_PASSWORD: testpass
+      POSTGRES_DB: supermarket_hot_deals_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin1234
     volumes:
       - pg_data:/var/lib/postgresql/data
 
