@@ -1,52 +1,49 @@
-version: '3.8'
+version: "3.8"
 
 services:
   db:
-    build:
-      context: ./database
-    container_name: supermarket_db
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: supermarket_hot_deals_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin1234
+      POSTGRES_DB: ab_test
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: testpass
     volumes:
       - pg_data:/var/lib/postgresql/data
 
-  backend:
-    build:
-      context: ./backend
+  backend: 
+    build: ../backend
     container_name: backend
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app
+      - ../backend:/app
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     depends_on:
       - db
 
   frontend:
-    build:
-      context: ./frontend
+    build: ../frontend
     container_name: frontend
     ports:
       - "8501:8501"
     volumes:
-      - ./frontend:/app
+      - ../frontend:/app
     command: streamlit run app.py --server.address=0.0.0.0
     depends_on:
       - backend
 
   ds:
-    build:
-      context: ./ds
+    build: .
     container_name: ds
     command: jupyter notebook --notebook-dir=/app --ip=0.0.0.0 --port=8888 --no-browser --allow-root
     ports:
       - "8888:8888"
     volumes:
-      - ./ds:/app
+      - .:/app
     depends_on:
       - db
 
