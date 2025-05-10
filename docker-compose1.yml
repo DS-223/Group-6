@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:13
+    container_name: supermarket_db
+    environment:
+      POSTGRES_DB: supermarket_hot_deals_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin1234
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  init_db:
+    build:
+      context: ./Database
+      dockerfile: Dockerfile
+    container_name: db_initializer
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_NAME: supermarket_hot_deals_db
+      DB_USER: postgres
+      DB_PASSWORD: admin1234
+      DB_HOST: db
+      DB_PORT: 5432
+
+
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./frontend:/app
+    command: streamlit run app.py --server.address=0.0.0.0
+    depends_on:
+      - backend
+
+  ds:
+    build: ./ds
+    container_name: ds
+    command: python app.py
+    volumes:
+      - ./ds:/app
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
