@@ -1,18 +1,36 @@
-version: '3.8'
+version: "3.9"
 
 services:
   db:
-    build:
-      context: ./database
+    image: postgres:13
     container_name: supermarket_db
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_DB: supermarket_hot_deals_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin1234
-    volumes:
-      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  init_db:
+    build:
+      context: ./Database
+      dockerfile: Dockerfile
+    container_name: db_initializer
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_NAME: supermarket_hot_deals_db
+      DB_USER: postgres
+      DB_PASSWORD: admin1234
+      DB_HOST: db
+      DB_PORT: 5432
+
 
   backend:
     build:
