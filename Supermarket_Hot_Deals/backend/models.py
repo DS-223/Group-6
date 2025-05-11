@@ -1,71 +1,66 @@
-from pydantic import BaseModel
-from typing import Optional
+from sqlalchemy import (
+    Column, Integer, String, Text, Float, Boolean, DateTime, ForeignKey
+)
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+from database import engine
+
+Base = declarative_base()
+
+class User(Base):
+    __tablename__ = 'users'
+
+    customer_id = Column(Integer, primary_key=True)
+    email = Column(String, nullable=False, unique=True)
+    name = Column(String, nullable=False)
+
+    # Relationships
+    transactions = relationship('Transaction', back_populates='customer')
 
 
+class Project(Base):
+    __tablename__ = 'projects'
+
+    project_id = Column(Integer, primary_key=True)
+    project_name = Column(String, nullable=False)
+    project_description = Column(Text)
+    number_of_bandits = Column(Integer, nullable=False)
+
+    # Relationships
+    bandits = relationship('Bandit', back_populates='project')
+    transactions = relationship('Transaction', back_populates='project')
 
 
-# -------------------------------
-# USERS
-# -------------------------------
-class UserInput(BaseModel):
-    email: str
-    name: str
+class Bandit(Base):
+    __tablename__ = 'bandits'
 
-class UserOutput(UserInput):
-    customer_id: int
+    bandit_id = Column(Integer, primary_key=True)
+    project_id = Column(Integer, ForeignKey('projects.project_id'), nullable=False)
+    bandit_name = Column(String, nullable=False)
 
+    alpha = Column(Float, nullable=False)
+    beta = Column(Float, nullable=False)
+    n = Column(Integer, nullable=False)
+    number_of_success = Column(Integer, nullable=False)
+    number_of_failures = Column(Integer, nullable=False)
 
-# -------------------------------
-# PROJECTS
-# -------------------------------
-class ProjectInput(BaseModel):
-    project_name: str
-    project_description: str
-    number_of_bandits: int
-
-class ProjectOutput(ProjectInput):
-    project_id: int
+    # Relationships
+    project = relationship('Project', back_populates='bandits')
+    transactions = relationship('Transaction', back_populates='bandit')
 
 
-# -------------------------------
-# BANDITS / ADS
-# -------------------------------
-class BanditInput(BaseModel):
-    project_id: int
-    bandit_name: str
+class Transaction(Base):
+    __tablename__ = 'transactions'
 
-class BanditOutput(BaseModel):
-    bandit_id: int
-    #project_id: Optional[int] = None
-    bandit_name: str
-    alpha: float
-    beta: float
-    n: int
-    number_of_success: int
-    number_of_failures: int
+    transaction_id = Column(Integer, primary_key=True)
+    customer_id = Column(Integer, ForeignKey('users.customer_id'), nullable=False)
+    project_id = Column(Integer, ForeignKey('projects.project_id'), nullable=False)
+    bandit_id = Column(Integer, ForeignKey('bandits.bandit_id'), nullable=False)
 
-class AdUpdate(BaseModel):
-    bandit_name: Optional[str] = None
-    alpha: Optional[float] = None
-    beta: Optional[float] = None
-    number_of_success: Optional[int] = None
-    number_of_failures: Optional[int] = None
-    n: Optional[int] = None
+    timestamp = Column(DateTime, nullable=False)
+    clicked = Column(Boolean, default=False)
 
-
-# -------------------------------
-# TRANSACTIONS
-# -------------------------------
-class TransactionInput(BaseModel):
-    customer_id: int
-    project_id: int
-    bandit_id: int
-    clicked: bool
-
-class TransactionOutput(TransactionInput):
-    transaction_id: int
-    timestamp: str
-
-
-
-
+    # Relationships
+    customer = relationship('User', back_populates='transactions')
+    project = relationship('Project', back_populates='transactions')
+    bandit = relationship('Bandit', back_populates='transactions')

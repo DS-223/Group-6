@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from models import BanditOutput, AdUpdate
+from schema import BanditOutput, AdUpdate
 from data import bandits_by_project
 import random
 
