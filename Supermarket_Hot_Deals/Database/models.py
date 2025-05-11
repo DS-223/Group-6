@@ -3,6 +3,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from database import engine
 
 Base = declarative_base()
 
@@ -63,3 +64,10 @@ class Transaction(Base):
     customer = relationship('User', back_populates='transactions')
     project = relationship('Project', back_populates='transactions')
     bandit = relationship('Bandit', back_populates='transactions')
+
+
+Base.metadata.create_all(engine, checkfirst=True)
+
+print("Database tables created or already exist.")
+# This will create the tables in the database if they do not already exist.
+    
