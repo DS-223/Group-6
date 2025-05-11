@@ -1,6 +1,9 @@
 #my custom gitignore
 feedback/*.md
 tasks/
+
+postgres_data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
