@@ -136,5 +136,31 @@ def get_top_3_sampled_ads(project_id: int, db: Session = Depends(get_db)):
     )[:3]
 
     return sampled
+@app.get("/analytics/clicks-per-ad")
+def clicks_per_ad(project_id: int, db: Session = Depends(get_db)):
+    ads = db.query(Bandit).filter(Bandit.project_id == project_id).all()
+    return [{"bandit_name": ad.bandit_name, "clicks": ad.number_of_success} for ad in ads]
 
+@app.get("/analytics/clicks-per-ad")
+def clicks_per_ad(project_id: int, db: Session = Depends(get_db)):
+    ads = db.query(Bandit).filter(Bandit.project_id == project_id).all()
+    return {
+        "labels": [ad.bandit_name for ad in ads],
+        "values": [ad.number_of_success for ad in ads]
+    }
+
+@app.get("/analytics/project-bandits")
+def get_project_bandits(project_id: int, db: Session = Depends(get_db)):
+    project = db.query(Project).filter(Project.project_id == project_id).first()
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    bandits = db.query(Bandit).filter(Bandit.project_id == project_id).all()
+    
+    return {
+        "project_id": project_id,
+        "bandits": [
+            {"bandit_id": b.bandit_id, "bandit_name": b.bandit_name} for b in bandits
+        ]
+    }
 
