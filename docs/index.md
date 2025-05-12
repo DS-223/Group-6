@@ -17,19 +17,17 @@ Supermarkets lack data-driven guidelines on the optimal sequence to display "Hot
 - Conduct a **controlled A/B test** with two or more homepage versions, each displaying "Hot Sales" products in a different order.  
 - Track user interactions (clicks, time spent, conversions) and store data in a structured database.  
 
+**Microservice Components:**
+- **Frontend:** Streamlit – displays model outputs and visualizations
+- **Backend:** FastAPI – exposes endpoints to interact with the model and database
+- **Database:** PostgreSQL – stores users and bandit parameters
+- **Model:** Thompson Sampling (Bayesian Bandit Algorithm) – used for product ranking and experimentation
+- **Documentation:** 
 
 
 ## Expected Outcomes  
 - **Higher CTR** on "Hot Sales" items.  
 - **Increased revenue** from optimized product placement.  
-- **Data-backed guidelines** for future promotional layouts.  
-
-## Evaluation Metrics  
-| Metric                | Baseline | Variant A | Variant B | Winner |  
-|-----------------------|----------|-----------|-----------|--------|  
-| Click-Through Rate    | X%       | Y%        | Z%        | TBD    |  
-| Revenue Uplift        | $X       | $Y        | $Z        | TBD    |  
-| Conversion Rate       | X%       | Y%        | Z%        | TBD    |  
 
 ---
 **Next Steps**:  
