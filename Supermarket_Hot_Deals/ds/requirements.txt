@@ -1,2 +1,8 @@
 fastapi
 uvicorn
+numpy
+matplotlib
+sqlalchemy
+psycopg2-binary
+python-dotenv
+jupyterlab
