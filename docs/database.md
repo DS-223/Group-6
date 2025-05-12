@@ -127,11 +127,11 @@ The SQLAlchemy ORM models define the database schema in `models.py`. Below are t
 
 ## 🐳 Dockerfile Behavior
 
-The Dockerfile sets up the environment to run your ETL and ORM code. It does the following:
+The Dockerfile sets up the environment to run ETL and ORM code. It does the following:
 
 1. Installs Python and system dependencies
 2. Installs Python dependencies from `requirements.txt`
-3. Copies your source files
+3. Copies source files
 4. Runs a script to create the database schema:
 
 ```python
