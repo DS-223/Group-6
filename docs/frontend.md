@@ -49,14 +49,7 @@ This Dockerfile is used to set up the frontend container to run a Streamlit appl
 This is the main application file for the frontend. It uses **Streamlit** to build an interactive web page for browsing supermarket products.
 
 - **Page Configuration**: The app's title is set to "Supermarket Hot Sales" with a wide layout.
-- **Sidebar**: 
-  - The sidebar allows users to navigate between pages such as "Shop", "Newsstand", "Who we are", and "My profile".
-  - It displays the current number of items in the basket.
-  
-- **Product Search & Sorting**:
-  - Users can search for products by name and sort them by price (low to high or high to low).
-  - The products are displayed in a grid format, with 3 products per page. Users can navigate between pages using the "⬅️" and "➡️" buttons.
-  
+-   
 - **Product Display**:
   - Products are shown with their image, name, price, and origin.
   - Each product has an option to add it to the basket. When added, a success message appears.
