@@ -1,4 +1,4 @@
-## Frontend Setup Breakdown
+# 📘 Frontend Documentation
 
 ## 🚀 Setup & Configuration
 
