@@ -1,0 +1,9 @@
+site_name: Supermarket Hot Deals Documentation
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - API: api.md
+  - Frontend: frontend.md
+  - Database: database.md
+  - Model: model.md
