@@ -26,7 +26,7 @@ engine = create_engine(DATABASE_URL)
 DATABASE_URL=postgresql://user:password@localhost:5432/hotdeals
 ```
 
-### The python-dotenv package loads this file at runtime.
+#### The python-dotenv package loads this file at runtime.
 
 # ORM Models and Database Schema
 
@@ -75,7 +75,7 @@ The SQLAlchemy ORM models define the database schema in `models.py`. Below are t
 - `bandit_id` (Primary Key)
 - `project_id` (Foreign Key to `projects.project_id`)
 - `bandit_name` (String, not null)
-- `alpha`, `beta` (Float): Parameters for probabilistic models (e.g., Thompson Sampling)
+- `alpha`, `beta` (Float): Parameters for Thompson Sampling
 - `n`, `number_of_success`, `number_of_failures` (Integer): Tracking success/failure
 
 **Relationships**:
