@@ -42,65 +42,139 @@ psycopg2
 
 ---
 
-### 📌 Projects
+## ✅ Create a Project
 
-#### ➕ `POST /projects`
-Create a new project.
+**Response:**
 
-**Request Body:**
-```json
-{
-  "project_id": 1,
-  "project_name": "Homepage Ads",
-  "project_description": "Test homepage ad designs",
-  "number_of_bandits": 2
-}
-```
+- Returns the newly created project including the generated project ID.
 
-### 📥 GET /projects
+**Status Codes:**
 
-Fetch all existing projects.
+- `200 OK`: Success
+- `400 Bad Request`: Invalid input
 
-#### Response
+---
 
-```json
-[
-  {
-    "project_id": 1,
-    "project_name": "Homepage Ads",
-    "project_description": "Test homepage ad designs",
-    "number_of_bandits": 2
-  }
-]
-```
+## 🔍 Get a Project
 
-### 🔍 GET /project/{project_id}
+**Endpoint:** `GET /project/{project_id}`
 
-Get a specific project by its ID.
+**Description:**  
+Retrieves a single project by its ID.
 
-#### Response
+**Parameters:**
 
-```json
-{
-  "project_id": 1,
-  "project_name": "Homepage Ads",
-  "project_description": "Test homepage ad designs",
-  "number_of_bandits": 2
-}
-```
-### 📢 Ads / Bandits
+- `project_id` (int, path): The unique ID of the project.
 
-#### ➕ POST /ads
+**Response:**
 
-Create a new ad (bandit) for a given project.
+- Returns the project details.
 
-#### Request Body
+**Status Codes:**
 
-```json
-{
-  "project_id": 1,
-  "bandit_name": "Layout A"
-}
-```
+- `200 OK`: Success
+- `404 Not Found`: Project not found
+
+---
+
+## 📥 Get All Projects
+
+**Endpoint:** `GET /projects`
+
+**Description:**  
+Retrieves all projects.
+
+**Response:**
+
+- Returns a list of all projects.
+
+**Status Codes:**
+
+- `200 OK`: Success
+- `404 Not Found`: No projects found
+
+---
+
+# 📢 Ads (Bandits)
+
+---
+## 🆕 Create an Ad
+
+**Response:**
+
+- Returns the newly created ad.
+
+**Status Codes:**
+
+- `200 OK`: Success  
+- `404 Not Found`: Project not found
+
+---
+
+## 📋 Get Ads for Project
+
+**Endpoint:** `GET /ads`
+
+**Description:**  
+Retrieves all ads for a specific project.
+
+**Query Parameters:**
+
+- `project_id` (int): The ID of the project
+
+**Response:**
+
+- Returns a list of ads for the project.
+
+**Status Code:**
+
+- `200 OK`: Success
+
+---
+
+## 🖱️ Register Ad Click
+
+**Endpoint:** `POST /ads/{bandit_id}/click`
+
+**Description:**  
+Registers a click event for a specific ad.
+
+**Parameters:**
+
+- `project_id` (int, query): The ID of the project  
+- `bandit_id` (int, path): The ID of the ad
+
+**Response:**
+
+- Returns confirmation message.
+
+**Status Codes:**
+
+- `200 OK`: Success  
+- `404 Not Found`: Ad not found
+
+---
+
+## 🎯 Sample Top 3 Ads
+
+**Endpoint:** `GET /ads/sample`
+
+**Description:**  
+Returns the top 3 ads sampled from their Beta distributions using Thompson Sampling.
+
+**Query Parameters:**
+
+- `project_id` (int): The ID of the project
+
+**Response:**
+
+- Returns a list of 3 sampled ads.
+
+**Status Codes:**
+
+- `200 OK`: Success  
+- `404 Not Found`: No ads found
+
 ## 🐳 Dockerfile Behavior
-շ
+
+The Dockerfile is used to set up a Docker container for running a FastAPI application. 
