@@ -18,3 +18,12 @@ from dotenv import load_dotenv
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
+```
+
+## The DATABASE_URL is stored in a .env file:
+
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/hotdeals
+```
+
+### The python-dotenv package loads this file at runtime.
