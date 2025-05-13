@@ -10,7 +10,7 @@ A Dockerized microservice project for managing employee records using FastAPI, S
 - 🔗 **Streamlit UI**: [http://localhost:8501](http://localhost:8501)
 - 🔗 **FastAPI Swagger Docs**: [http://localhost:8008/docs](http://localhost:8008/docs)
 - 🔗 **pgAdmin Interface**: [http://localhost:5050](http://localhost:5050)
-- 🔗 **Documentation**: [[http://127.0.0.1:8000](http://127.0.0.1:8000](https://ds-223.github.io/Group-6/))
+- 🔗 **Documentation**: [http://127.0.0.1:8000](http://127.0.0.1:8000](https://ds-223.github.io/Group-6/))
 
 ---
 
