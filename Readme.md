@@ -90,6 +90,7 @@ This service (`app/`) is responsible for the frontend interface:
 - ❌ Delete records  
 
 🌐 **Access it at:** [http://localhost:8501](http://localhost:8501)
+<img width="1173" alt="Screenshot 2025-05-13 at 11 14 00" src="https://github.com/user-attachments/assets/656a76ac-2c9f-4b33-a108-dcf9090b3b5a" />
 
 ---
 
