@@ -128,14 +128,30 @@ The database is connected to the backend API. You can visualize or modify data d
 
 <img width="564" alt="Screenshot 2025-05-13 at 20 59 09" src="https://github.com/user-attachments/assets/fed90c56-469f-4bd6-933f-16829ab99157" />
 
+# 📘 MkDocs: Documentation
 
+MkDocs generates beautiful HTML documentation from Markdown files.
 
-##  How to Run the Project
+---
 
+## ✅ Prerequisites
 
-
-Make sure Docker is installed and running. Then, in the `Supermarket_Hot_Deals/` directory:
+Install the required dependencies:
 
 ```bash
-docker-compose up --build
+pip install mkdocs-material
+pip install 'mkdocstrings[python]'
 ```
+
+## 🚀 How to Use MkDocs
+
+
+   To see the documentation, type 
+   
+   ```bash
+   mkdocs serve
+
+   ```
+   and click on the browser connection to open it in your browser.
+
+
