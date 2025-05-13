@@ -193,25 +193,6 @@ def get_top_3_sampled_ads(project_id: int, db: Session = Depends(get_db)):
 
     return sampled
 
-@app.get("/analytics/clicks-per-ad")
-def clicks_per_ad(project_id: int, db: Session = Depends(get_db)):
-    """
-    Retrieve the number of clicks (successes) per ad (bandit) for a given project.
-
-    This endpoint returns a list of dictionaries showing the name of each ad and the number
-    of clicks it has received, allowing simple analytics and performance monitoring.
-
-    Args:
-        project_id (int): The unique ID of the project to retrieve ad performance for.
-        db (Session, optional): SQLAlchemy database session. Automatically provided by FastAPI.
-
-    Returns:
-        List[dict]: A list of dictionaries with each containing:
-            - 'bandit_name': The name of the ad (str)
-            - 'clicks': Number of successful clicks (int)
-    """ 
-    ads = db.query(Bandit).filter(Bandit.project_id == project_id).all()
-    return [{"bandit_name": ad.bandit_name, "clicks": ad.number_of_success} for ad in ads]
 
 @app.get("/analytics/clicks-per-ad")
 def clicks_per_ad(project_id: int, db: Session = Depends(get_db)):
