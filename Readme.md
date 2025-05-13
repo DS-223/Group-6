@@ -106,6 +106,7 @@ The database is connected to the backend API. You can visualize or modify data d
 - Create a server using the credentials in your `.env` file.
 - Use `pgAdmin` to inspect tables and run SQL queries.
 
+![Uploading Screenshot 2025-05-13 at 12.16.54.png…]()
 
 
 ##  How to Run the Project
