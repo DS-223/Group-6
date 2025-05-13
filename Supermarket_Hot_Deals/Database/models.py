@@ -8,6 +8,10 @@ from database import engine
 Base = declarative_base()
 
 class User(Base):
+    """
+    Represents a customer/user in the system.
+    Each user can perform multiple transactions.
+    """
     __tablename__ = 'users'
 
     customer_id = Column(Integer, primary_key=True)
@@ -19,6 +23,10 @@ class User(Base):
 
 
 class Project(Base):
+    """
+    Represents a project that contains multiple bandits.
+    Projects are used to group related bandits and experiments.
+    """
     __tablename__ = 'projects'
 
     project_id = Column(Integer, primary_key=True)
@@ -32,6 +40,10 @@ class Project(Base):
 
 
 class Bandit(Base):
+    """
+    Represents an individual bandit (variant/option) in a multi-armed bandit algorithm.
+    Tracks statistics like alpha, beta, number of successes/failures for Thompson Sampling.
+    """
     __tablename__ = 'bandits'
 
     bandit_id = Column(Integer, primary_key=True)
@@ -50,6 +62,10 @@ class Bandit(Base):
 
 
 class Transaction(Base):
+    """
+    Represents a single interaction or event where a user was shown a bandit (variant).
+    Records whether the user clicked (success) or not.
+    """
     __tablename__ = 'transactions'
 
     transaction_id = Column(Integer, primary_key=True)
