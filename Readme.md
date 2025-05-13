@@ -110,9 +110,9 @@ The database is connected to the backend API. You can visualize or modify data d
 
 ##  How to Run the Project
 
-### 1. Run PostgreSQL with Docker
 
-Make sure Docker is installed and running. Then, in the `Database/` directory:
+
+Make sure Docker is installed and running. Then, in the `Supermarket_Hot_Deals/` directory:
 
 ```bash
 docker-compose up -d
