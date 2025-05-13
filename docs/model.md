@@ -17,21 +17,21 @@ DB_NAME=supermarket_hot_deals_db
 
 The **DS (Data Science)** service provides backend capabilities for user data management and experimentation using a FastAPI application. Its core functions include:
 
-- **CRUD operations** on user data stored in a MySQL database.
-- **Loading simulated user data** from a CSV file into the database upon startup.
+- **CRUD operations** on user data stored in a PosgreSQL database.
+
 - **Serving API endpoints** such as:
   - `POST /create` — Create a new user.
   - `GET /users` — Retrieve all users.
   - `PUT /update/{user_id}` — Update a user's name.
   - `DELETE /delete/{user_id}` — Delete a user and their transactions.
 
-This service also includes the logic to **load data at startup** using pandas, which enables quick initialization with pre-existing datasets.
+
 
 ---
 
 ## Thompson Sampling Notebook
 
-The service contains a Jupyter Notebook named `thompson_new.ipynb` that performs a **Thompson Sampling experiment** using SQLAlchemy and a relational database. It is designed to:
+The service contains a Jupyter Notebook named `thompson_sampling.ipynb` that performs a **Thompson Sampling experiment** using SQLAlchemy and a relational database. It is designed to:
 
 - Connect to a project database and define an experiment (`Project`) and a set of `Bandit` entries (representing different products).
 - Initialize the bandits with random priors (`alpha`, `beta`).
