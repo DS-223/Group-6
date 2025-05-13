@@ -61,30 +61,8 @@ Password: admin
 
 💡 You may need to add a server manually the first time in pgAdmin. Use PostgreSQL default port and credentials from your `.env`.
 
-## 🏗️ Project Structure
 
-├── .github/
-│   └── workflows/
-├── Supermarket_Hot_Deals/
-│   ├── Database/
-│   ├── backend/
-│   ├── ds/
-│   ├── frontend/
-│   ├── pgadmin_data/
-│   │   └── sessions/
-│   ├── .env
-│   ├── __init__.py
-│   └── docker-compose.yml
-├── docs/
-├── feedback/
-├── .gitignore
-├── LICENSE
-├── Problem Definition.pdf
-├── Readme.md
-└── mkdocs.yml
-
-
- ## 🧪 API Features (FastAPI)
+## 🧪 API Features (FastAPI)
 
 ### Endpoints
 
