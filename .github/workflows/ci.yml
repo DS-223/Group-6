@@ -22,6 +22,7 @@ jobs:
         run: |
           pip install mkdocs-material
           pip install 'mkdocstrings[python]'
+          pip install pillow cairosvg
 
       - name: Deploy to GitHub Pages 🚀
         run: mkdocs gh-deploy --force
