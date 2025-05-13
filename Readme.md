@@ -10,14 +10,14 @@ A Dockerized microservice project for managing employee records using FastAPI, S
 - 🔗 **Streamlit UI**: [http://localhost:8501](http://localhost:8501)
 - 🔗 **FastAPI Swagger Docs**: [http://localhost:8008/docs](http://localhost:8008/docs)
 - 🔗 **pgAdmin Interface**: [http://localhost:5050](http://localhost:5050)
-- 🔗 **MkDocs Documentation**: [http://127.0.0.1:8000](http://127.0.0.1:8000) _(after `mkdocs serve`)_
+- 🔗 **Documentation**: https://ds-223.github.io/Group-6/
 
 ---
 
 ## 📂 Branches
 
 - **main**: Complete integrated system
-- **db-setup**: Database & ETL process
+- **db-9**: Database & ETL process
 - **backend**: FastAPI backend service
 - **frontend**: Streamlit frontend interface
 - **ds**: Jupyter notebook environment
@@ -59,13 +59,10 @@ docker-compose up --build
 ###Email: admin@admin.com
 Password: admin
 
-
-
 💡 You may need to add a server manually the first time in pgAdmin. Use PostgreSQL default port and credentials from your `.env`.
 
-## 🏗️ Project Structure
 
- ## 🧪 API Features (FastAPI)
+## 🧪 API Features (FastAPI)
 
 ### Endpoints
 
@@ -77,6 +74,7 @@ Password: admin
 | `/employees/{id}`   | DELETE | Remove employee        |
 
 📎 **Interact with these endpoints at:** [http://localhost:8008/docs](http://localhost:8008/docs)
+
 Here is the screenshot of the Swagger: 
 
 <img width="1510" alt="Screenshot 2025-05-13 at 11 22 00" src="https://github.com/user-attachments/assets/caa8f1c9-9182-4207-9889-cc550d96d6f0" />
@@ -88,13 +86,10 @@ Here is the screenshot of the Swagger:
 
 This service (`app/`) is responsible for the frontend interface:
 
-- ➕ Add new employees  
-- 📋 View employee table  
-- 📝 Update salaries  
-- ❌ Delete records  
+<img width="1173" alt="Screenshot 2025-05-13 at 11 14 00" src="https://github.com/user-attachments/assets/656a76ac-2c9f-4b33-a108-dcf9090b3b5a" />
+
 
 🌐 **Access it at:** [http://localhost:8501](http://localhost:8501)
-<img width="1173" alt="Screenshot 2025-05-13 at 11 14 00" src="https://github.com/user-attachments/assets/656a76ac-2c9f-4b33-a108-dcf9090b3b5a" />
 
 ---
 
@@ -106,15 +101,34 @@ The database is connected to the backend API. You can visualize or modify data d
 - Create a server using the credentials in your `.env` file.
 - Use `pgAdmin` to inspect tables and run SQL queries.
 
-![Uploading Screenshot 2025-05-13 at 12.16.54.png…]()
+###This is the ERD:
 
+<img width="564" alt="Screenshot 2025-05-13 at 20 59 09" src="https://github.com/user-attachments/assets/fed90c56-469f-4bd6-933f-16829ab99157" />
 
-##  How to Run the Project
+# 📘 MkDocs: Documentation
 
+MkDocs generates beautiful HTML documentation from Markdown files.
 
+---
 
-Make sure Docker is installed and running. Then, in the `Supermarket_Hot_Deals/` directory:
+## ✅ Prerequisites
+
+Install the required dependencies:
 
 ```bash
-docker-compose up -d
+pip install mkdocs-material
+pip install 'mkdocstrings[python]'
 ```
+
+## 🚀 How to Use MkDocs
+
+
+   To see the documentation, type 
+   
+   ```bash
+   mkdocs serve
+
+   ```
+   and click on the browser connection to open it in your browser.
+
+
