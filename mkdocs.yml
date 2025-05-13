@@ -39,5 +39,8 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
+          setup_commands:
+              - import sys
+              - sys.path.append("Supermarket_Hot_Deals")
           options:
             show_source: true
