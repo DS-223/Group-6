@@ -1,4 +1,5 @@
 site_name: Supermarket Hot Deals Documentation
+site_url: https://ds-223.github.io/Group-6/
 
 theme:
   name: material
