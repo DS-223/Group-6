@@ -63,7 +63,6 @@ Password: admin
 
 ## 🏗️ Project Structure
 
-
 ├── .github/
 │   └── workflows/
 ├── Supermarket_Hot_Deals/
