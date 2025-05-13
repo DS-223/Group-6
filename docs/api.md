@@ -1,3 +1,3 @@
 # 🧪 API - Backend
 
-::: Sopermarket_Hot_Deals.backend.main
+::: Supermarket_Hot_Deals.backend.main
