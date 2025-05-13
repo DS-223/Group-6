@@ -35,11 +35,9 @@ nav:
   - Model: model.md
 
 plugins:
+  - search
   - mkdocstrings:
       handlers:
         python:
-          setup_commands:
-            - import sys
-            - sys.path.append(".")
-          rendering:
+          options:
             show_source: true
