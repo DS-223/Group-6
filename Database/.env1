@@ -1,7 +1,0 @@
-DATABASE_URL=postgresql://postgres:admin1234@db:5432/supermarket_hot_deals_db
-DB_NAME=supermarket_hot_deals_db
-DB_USER=postgres
-DB_PASSWORD=admin1234
-DB_HOST=db
-DB_PORT=5432
-
