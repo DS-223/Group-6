@@ -36,11 +36,10 @@ nav:
 
 plugins:
   - search
+  - autorefs  # Optional: only if using reference linking
   - mkdocstrings:
       handlers:
         python:
-          setup_commands:
-            - import sys
-            - sys.path.append(".")
+          paths: ["."]
           options:
             show_source: true
