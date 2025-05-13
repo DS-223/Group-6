@@ -77,6 +77,10 @@ Password: admin
 | `/employees/{id}`   | DELETE | Remove employee        |
 
 📎 **Interact with these endpoints at:** [http://localhost:8008/docs](http://localhost:8008/docs)
+Here is the screenshot of the Swagger: 
+
+<img width="1510" alt="Screenshot 2025-05-13 at 11 22 00" src="https://github.com/user-attachments/assets/caa8f1c9-9182-4207-9889-cc550d96d6f0" />
+<img width="1504" alt="Screenshot 2025-05-13 at 11 22 21" src="https://github.com/user-attachments/assets/94faf586-bec4-4165-9d04-76f1b15fe06b" />
 
 ---
 
