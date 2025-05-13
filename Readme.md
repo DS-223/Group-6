@@ -17,7 +17,7 @@ A Dockerized microservice project for managing employee records using FastAPI, S
 ## 📂 Branches
 
 - **main**: Complete integrated system
-- **db-setup**: Database & ETL process
+- **db-9**: Database & ETL process
 - **backend**: FastAPI backend service
 - **frontend**: Streamlit frontend interface
 - **ds**: Jupyter notebook environment
@@ -59,11 +59,31 @@ docker-compose up --build
 ###Email: admin@admin.com
 Password: admin
 
-
-
 💡 You may need to add a server manually the first time in pgAdmin. Use PostgreSQL default port and credentials from your `.env`.
 
 ## 🏗️ Project Structure
+
+
+├── .github/
+│   └── workflows/
+├── Supermarket_Hot_Deals/
+│   ├── Database/
+│   ├── backend/
+│   ├── ds/
+│   ├── frontend/
+│   ├── pgadmin_data/
+│   │   └── sessions/
+│   ├── .env
+│   ├── __init__.py
+│   └── docker-compose.yml
+├── docs/
+├── feedback/
+├── .gitignore
+├── LICENSE
+├── Problem Definition.pdf
+├── Readme.md
+└── mkdocs.yml
+
 
  ## 🧪 API Features (FastAPI)
 
@@ -77,6 +97,7 @@ Password: admin
 | `/employees/{id}`   | DELETE | Remove employee        |
 
 📎 **Interact with these endpoints at:** [http://localhost:8008/docs](http://localhost:8008/docs)
+
 Here is the screenshot of the Swagger: 
 
 <img width="1510" alt="Screenshot 2025-05-13 at 11 22 00" src="https://github.com/user-attachments/assets/caa8f1c9-9182-4207-9889-cc550d96d6f0" />
@@ -88,13 +109,10 @@ Here is the screenshot of the Swagger:
 
 This service (`app/`) is responsible for the frontend interface:
 
-- ➕ Add new employees  
-- 📋 View employee table  
-- 📝 Update salaries  
-- ❌ Delete records  
+<img width="1173" alt="Screenshot 2025-05-13 at 11 14 00" src="https://github.com/user-attachments/assets/656a76ac-2c9f-4b33-a108-dcf9090b3b5a" />
+
 
 🌐 **Access it at:** [http://localhost:8501](http://localhost:8501)
-<img width="1173" alt="Screenshot 2025-05-13 at 11 14 00" src="https://github.com/user-attachments/assets/656a76ac-2c9f-4b33-a108-dcf9090b3b5a" />
 
 ---
 
@@ -119,5 +137,5 @@ The database is connected to the backend API. You can visualize or modify data d
 Make sure Docker is installed and running. Then, in the `Supermarket_Hot_Deals/` directory:
 
 ```bash
-docker-compose up -d
+docker-compose up --build
 ```
