@@ -39,6 +39,6 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: [".."]  
+          paths: ["Supermarket_Hot_Deals"] 
           options:
             show_source: true
