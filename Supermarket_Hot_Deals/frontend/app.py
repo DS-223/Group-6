@@ -10,6 +10,7 @@ This Streamlit app displays current supermarket deals. Users can:
 Built with ❤️ using Streamlit.
 """
 import streamlit as st
+import requests
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="Supermarket Hot Sales", layout="wide")
@@ -32,31 +33,40 @@ st.sidebar.radio("Go to", ["Shop", "Newsstand", "Who we are", "My profile"])
 if "basket" not in st.session_state:
     st.session_state.basket = []
 
-# Show basket item count in sidebar
 st.sidebar.markdown(f"🧺 **Basket items**: {len(st.session_state.basket)}")
 
 # Page title and subtitle
 st.title("Supermarket Hot Sales")
 st.caption("April 10, 2025")
 
+# Get products from backend (if available)
+project_id = 1
+products = []
+try:
+    response = requests.get("http://backend:8000/ads/sample", params={"project_id": project_id})
+    if response.status_code == 200:
+        data = response.json()
+        products = [
+            {
+                "bandit_id": item["bandit_id"],
+                "name": item["bandit_name"],
+                "price": 5.0,  # Placeholder price
+                "unit": "N/A",  # Add units if available
+                "origin": "N/A",  # Add origin if available
+                "image": f"images/{item['bandit_name'].lower().replace(' ', '_')}.png"
+            } for item in data
+        ]
+    else:
+        st.error("⚠️ Failed to fetch ads from backend.")
+except Exception as e:
+    st.error(f"🚫 Error connecting to backend: {e}")
+
 # Search and sort inputs
 search = st.text_input("🔍 Search for a product")
 sort_option = st.selectbox("Sort by", ["Default", "Price Low to High", "Price High to Low"])
 
-# Product catalog
-products = [
-    {"name": "Heirloom tomato", "price": 5.99, "unit": "$5.99 / lb", "origin": "San Juan Capistrano, CA", "image": "images/tomato.png"},
-    {"name": "Organic ginger", "price": 12.99, "unit": "$12.99 / lb", "origin": "Huntington Beach, CA", "image": "images/ginger.png"},
-    {"name": "Organic cucumber", "price": 7.99, "unit": "$7.99 / lb", "origin": "Huntington Beach, CA", "image": "images/cucumber.png"},
-    {"name": "Green bell pepper", "price": 3.99, "unit": "$3.99 / lb", "origin": "Fresno, CA", "image": "images/pepper.png"},
-    {"name": "Baby spinach", "price": 2.49, "unit": "$2.49 / bag", "origin": "Salinas Valley, CA", "image": "images/spinach.png"},
-    {"name": "Strawberries", "price": 6.99, "unit": "$6.99 / box", "origin": "Watsonville, CA", "image": "images/strawberry.png"}
-]
-
-# Filter products based on search term
+# Filter and sort
 filtered = [p for p in products if search.lower() in p["name"].lower()]
-
-# Apply sorting
 if sort_option == "Price Low to High":
     filtered = sorted(filtered, key=lambda x: x["price"])
 elif sort_option == "Price High to Low":
@@ -65,8 +75,6 @@ elif sort_option == "Price High to Low":
 # Pagination setup
 products_per_page = 3
 max_page = (len(filtered) - 1) // products_per_page
-
-# Initialize page number in session state
 if "page" not in st.session_state:
     st.session_state.page = 0
 
@@ -79,23 +87,30 @@ with col_right:
     if st.button("➡️"):
         st.session_state.page = min(max_page, st.session_state.page + 1)
 
-# Select products to show on current page
+# Display current page's products
 start = st.session_state.page * products_per_page
 end = start + products_per_page
 current_products = filtered[start:end]
 
-# Display product cards in a row of 3 columns
 cols = st.columns(3)
 for col, product in zip(cols, current_products):
     with col:
         st.image(product["image"], use_container_width=True)
-        with st.expander(f"{product['name']} - {product['unit']}"):
-            st.write(f"📍 Origin: {product['origin']}")
-            if st.button(f"Add {product['name']} to basket"):
+        with st.expander(f"{product['name']}"):
+            st.write(f"📍 {product.get('origin', 'Unknown')}")
+            st.write(f"💲 {product.get('unit', 'Price not available')}")
+            if st.button(f"Add {product['name']} to basket", key=product['name']):
                 st.session_state.basket.append(product["name"])
-                st.success(f"{product['name']} added to basket ✅")
+                try:
+                    click_url = f"http://backend:8000/ads/{product['bandit_id']}/click"
+                    click_response = requests.post(click_url, params={"project_id": project_id})
+                    if click_response.status_code == 200:
+                        st.success(f"{product['name']} added & click registered ✅")
+                    else:
+                        st.warning("Failed to register click.")
+                except Exception as e:
+                    st.error(f"Error posting click: {e}")
 
 # Footer
 st.markdown("---")
 st.markdown("© 2025 Supermarket Hot Sales — Built with ❤️ using Streamlit")
-
